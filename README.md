@@ -23,7 +23,8 @@ cmake --build build
 - Barrier
 - SpinLock
 - SpinWait
-- Monitor
+- Monitor.
+
 Проанализировать скорости работы примитивов с использованием StopWatch и BenchMarkDotNet.
 
 *2. Многопоточная обработка данных.*
