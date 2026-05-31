@@ -13,45 +13,40 @@ void race_with_mutex(std::string& buffer, std::mutex& mtx) {
   }
 }
 
-void race_with_spinlock(std::string& buffer, SpinLock& lock)
-{
-    for (int iter = 0; iter < count_iterations; ++iter) {
-        lock.lock();
-        buffer += static_cast<char>(charDist(prng));
-        lock.unlock();
-    }
+void race_with_spinlock(std::string& buffer, SpinLock& lock) {
+  for (int iter = 0; iter < count_iterations; ++iter) {
+    lock.lock();
+    buffer += static_cast<char>(charDist(prng));
+    lock.unlock();
+  }
 }
 
-void race_with_spinwait_mutex(std::string& buffer, SpinWaitMutex& lock)
-{
-    for (int iter = 0; iter < count_iterations; ++iter) {
-        lock.lock();
-        buffer += static_cast<char>(charDist(prng));
-        lock.unlock();
-    }
+void race_with_spinwait_mutex(std::string& buffer, SpinWaitMutex& lock) {
+  for (int iter = 0; iter < count_iterations; ++iter) {
+    lock.lock();
+    buffer += static_cast<char>(charDist(prng));
+    lock.unlock();
+  }
 }
 
-void race_with_monitor(std::string& buffer, Monitor& mon)
-{
-    for (int iter = 0; iter < count_iterations; ++iter) {
-        mon.enter();
-        buffer += static_cast<char>(charDist(prng));
-        mon.exit();
-    }
+void race_with_monitor(std::string& buffer, Monitor& mon) {
+  for (int iter = 0; iter < count_iterations; ++iter) {
+    mon.enter();
+    buffer += static_cast<char>(charDist(prng));
+    mon.exit();
+  }
 }
 
-void race_with_counting_semaphore(std::string& buffer, CountingSemaphore& sem)
-{
-    for (int iter = 0; iter < count_iterations; ++iter) {
-        sem.acquire();
-        buffer += static_cast<char>(charDist(prng));
-        sem.release();
-    }
+void race_with_counting_semaphore(std::string& buffer, CountingSemaphore& sem) {
+  for (int iter = 0; iter < count_iterations; ++iter) {
+    sem.acquire();
+    buffer += static_cast<char>(charDist(prng));
+    sem.release();
+  }
 }
 
-void race_with_barrier(Barrier& barrier, int iterations)
-{
-    for (int i = 0; i < iterations; ++i) {
-        barrier.arrive_and_wait();
-    }
+void race_with_barrier(Barrier& barrier, int iterations) {
+  for (int i = 0; i < iterations; ++i) {
+    barrier.arrive_and_wait();
+  }
 }

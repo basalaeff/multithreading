@@ -1,15 +1,15 @@
 #pragma once
-#include "../sync/SpinLock.hpp"
-#include "../sync/SpinWait.hpp"
-#include "../sync/SpinWaitMutex.hpp"
-#include "../sync/Monitor.hpp"
-#include "../sync/CountingSemaphore.hpp"
-#include "../sync/Barrier.hpp"
-
 #include <mutex>
 #include <random>
 #include <string>
 #include <thread>
+
+#include "../sync/Barrier.hpp"
+#include "../sync/CountingSemaphore.hpp"
+#include "../sync/Monitor.hpp"
+#include "../sync/SpinLock.hpp"
+#include "../sync/SpinWait.hpp"
+#include "../sync/SpinWaitMutex.hpp"
 
 extern const int count_iterations;
 
