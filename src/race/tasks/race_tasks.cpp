@@ -12,3 +12,12 @@ void race_with_mutex(std::string& buffer, std::mutex& mtx) {
     buffer += static_cast<char>(charDist(prng));
   }
 }
+
+void race_with_spinlock(std::string& buffer, SpinLock& lock)
+{
+    for (int iter = 0; iter < count_iterations; ++iter) {
+        lock.lock();
+        buffer += static_cast<char>(charDist(prng));
+        lock.unlock();
+    }
+}

@@ -9,5 +9,10 @@ int main() {
     run_benchmark("std::mutex", race_with_mutex, stdMutex);
   }
 
+  {
+    SpinLock spinLock;
+    run_benchmark("SpinLock", race_with_spinlock, spinLock);
+  }
+
   return 0;
 }
