@@ -21,3 +21,12 @@ void race_with_spinlock(std::string& buffer, SpinLock& lock)
         lock.unlock();
     }
 }
+
+void race_with_spinwait_mutex(std::string& buffer, SpinWaitMutex& lock)
+{
+    for (int iter = 0; iter < count_iterations; ++iter) {
+        lock.lock();
+        buffer += static_cast<char>(charDist(prng));
+        lock.unlock();
+    }
+}

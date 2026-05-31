@@ -14,5 +14,10 @@ int main() {
     run_benchmark("SpinLock", race_with_spinlock, spinLock);
   }
 
+  {
+    SpinWaitMutex spinWaitMutex;
+    run_benchmark("SpinWaitMutex", race_with_spinwait_mutex, spinWaitMutex);
+  }
+
   return 0;
 }
