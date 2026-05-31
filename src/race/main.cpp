@@ -19,5 +19,10 @@ int main() {
     run_benchmark("SpinWaitMutex", race_with_spinwait_mutex, spinWaitMutex);
   }
 
+  {
+    Monitor monitor;
+    run_benchmark("Monitor", race_with_monitor, monitor);
+  }
+
   return 0;
 }

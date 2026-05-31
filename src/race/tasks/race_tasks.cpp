@@ -30,3 +30,12 @@ void race_with_spinwait_mutex(std::string& buffer, SpinWaitMutex& lock)
         lock.unlock();
     }
 }
+
+void race_with_monitor(std::string& buffer, Monitor& mon)
+{
+    for (int iter = 0; iter < count_iterations; ++iter) {
+        mon.enter();
+        buffer += static_cast<char>(charDist(prng));
+        mon.exit();
+    }
+}
