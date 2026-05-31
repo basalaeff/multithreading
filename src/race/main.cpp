@@ -24,5 +24,10 @@ int main() {
     run_benchmark("Monitor", race_with_monitor, monitor);
   }
 
+  {
+    CountingSemaphore semaphore(1);
+    run_benchmark("CountingSemaphore", race_with_counting_semaphore, semaphore);
+  }
+
   return 0;
 }

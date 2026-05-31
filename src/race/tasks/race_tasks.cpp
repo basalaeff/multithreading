@@ -39,3 +39,12 @@ void race_with_monitor(std::string& buffer, Monitor& mon)
         mon.exit();
     }
 }
+
+void race_with_counting_semaphore(std::string& buffer, CountingSemaphore& sem)
+{
+    for (int iter = 0; iter < count_iterations; ++iter) {
+        sem.acquire();
+        buffer += static_cast<char>(charDist(prng));
+        sem.release();
+    }
+}
