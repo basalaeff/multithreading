@@ -48,3 +48,10 @@ void race_with_counting_semaphore(std::string& buffer, CountingSemaphore& sem)
         sem.release();
     }
 }
+
+void race_with_barrier(Barrier& barrier, int iterations)
+{
+    for (int i = 0; i < iterations; ++i) {
+        barrier.arrive_and_wait();
+    }
+}

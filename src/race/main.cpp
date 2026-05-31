@@ -29,5 +29,10 @@ int main() {
     run_benchmark("CountingSemaphore", race_with_counting_semaphore, semaphore);
   }
 
+  {
+    Barrier barrier(count_threads);
+    run_benchmark_barrier("Barrier", barrier);
+  }
+
   return 0;
 }

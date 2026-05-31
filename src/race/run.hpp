@@ -41,3 +41,27 @@ void run_benchmark(const std::string& benchmarkName, WorkFunc work,
 
   std::cout << "Время: " << elapsedUs << " мкс" << std::endl;
 }
+
+void run_benchmark_barrier(const std::string& benchmarkName, Barrier& barrier) {
+  std::cout << " Запуск: " << benchmarkName << " ... " << std::flush;
+
+  auto time_start = std::chrono::high_resolution_clock::now();
+
+  std::vector<std::thread> workerThreads;
+  workerThreads.reserve(count_threads);
+  for (int threadIndex = 0; threadIndex < count_threads; ++threadIndex) {
+    workerThreads.emplace_back(race_with_barrier, std::ref(barrier),
+                               count_iterations);
+  }
+
+  for (auto& th : workerThreads) {
+    th.join();
+  }
+
+  auto time_end = std::chrono::high_resolution_clock::now();
+  auto elapsedUs = std::chrono::duration_cast<std::chrono::microseconds>(
+                       time_end - time_start)
+                       .count();
+
+  std::cout << "Время: " << elapsedUs << " мкс" << std::endl;
+}
