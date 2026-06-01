@@ -12,6 +12,7 @@ find_package(Threads REQUIRED)
 
 add_executable(race src/race/main.cpp src/race/tasks/race_tasks.cpp)
 add_executable(package src/package/main.cpp src/package/load_data_from_file.cpp)
+add_executable(banker src/banker/main.cpp src/banker/BankerAlgorithm.cpp)
 
 target_include_directories(race PRIVATE src)
 target_link_libraries(race Threads::Threads)
