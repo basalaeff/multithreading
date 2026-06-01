@@ -1,6 +1,6 @@
 #include "race_tasks.hpp"
 
-extern const int count_iterations{1000};
+extern const int count_iterations{100000};
 
 // Pseudo-Random Number Generator
 thread_local std::mt19937 prng{std::random_device{}()};
@@ -46,7 +46,13 @@ void race_with_counting_semaphore(std::string& buffer, CountingSemaphore& sem) {
 }
 
 void race_with_barrier(Barrier& barrier, int iterations) {
-  for (int i = 0; i < iterations; ++i) {
+  const int BATCH_SIZE = 1000;
+  // синхронизация потоков
+  for (int i = 0; i < iterations; i += BATCH_SIZE) {
+    volatile int sink = 0;
+    for (int j = 0; j < BATCH_SIZE; ++j) {
+      sink += j;
+    }
     barrier.arrive_and_wait();
   }
 }
